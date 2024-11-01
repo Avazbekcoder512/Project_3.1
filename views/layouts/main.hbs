@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.3/font/bootstrap-icons.min.css">
+</head>
+
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <h2>Admin Panel</h2>
+            <ul>
+                {{#if isStatistics}}
+                <li><a href="/api/statistics" class="active">Statistics</a></li>
+                {{else}}
+                <li><a href="/api/statistics">Statistics</a></li>
+                {{/if}}
+
+                {{#if isUsers}}
+                <li><a href="/api/users" class="active">Users</a></li>
+                {{else}}
+                <li><a href="/api/users">Users</a></li>
+                {{/if}}
+
+                {{#if isProducts}}
+                <li><a href="/api/products" class="active">Products</a></li>
+                {{else}}
+                <li><a href="/api/products">Products</a></li>
+                {{/if}}
+
+                {{#if isMaterials}}
+                <li><a href="/api/materials" class="active">Materials</a></li>
+                {{else}}
+                <li><a href="/api/materials">Materials</a></li>
+                {{/if}}
+
+                <li><a href="#">Instruction</a></li>
+            </ul>
+        </div>
+
+        <!-- Navbar -->
+        <div class="navbar">
+            <button id="toggle-button">☰</button>
+            <h1>Admin Dashboard</h1>
+            <div class="user-info">
+                {{#if isUsers}}
+                <button type="submit"><a href="/api/create-user">Create User</a></button>
+                {{/if}}
+
+                {{#if isProducts}}
+                <button type="submit"><a href="/api/product">Create Product</a></button>
+                {{/if}}
+
+                {{#if isMaterials}}
+                <button type="submit"><a href="/api/create-material">Create Materials</a></button>
+                {{/if}}
+                <form action="/api/auth/logout" method="post">
+                    <button class="logout-button">Logout</button>
+                </form>
+            </div>
+        </div>
+
+        <script>
+            document.getElementById('toggle-button').addEventListener('click', () => {
+                const sidebar = document.getElementById('sidebar');
+                sidebar.classList.toggle('active');
+                const mainContent = document.querySelector('.main-content');
+                mainContent.style.marginLeft = sidebar.classList.contains('active') ? '250px' : '0';
+            });
+        </script>
+
+        {{{body}}}
+    </div>
+</body>
+
+</html>

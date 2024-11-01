@@ -1,0 +1,41 @@
+<div class="product-page-wrapper">
+    <div id="product-creation-form">
+        <h2 class="form-title">Create Product</h2>
+        
+        <!-- Product name input -->
+        <form action="/api/product" method="post">
+            <input type="text" class="product-name-input" name="name" placeholder="Product Name" />
+
+            <div id="material-container">
+                <!-- Materiallar qatori -->
+                {{#each materials}}
+                <div class="material-item">
+                    <label>
+                        <span>
+                        <input type="checkbox" class="material-checkbox" onclick="toggleAmountInput(this)" />
+                        <span>{{name}}</span>
+
+                        </span>
+                    <input type="number" step="0.1" class="amount-input" placeholder="Amount" disabled />
+                    </label>
+                </div>
+                {{/each}}
+            </div>
+
+            <!-- Tugmalar -->
+            <div class="action-buttons">
+                <button type="submit" class="save-product-btn">Save Product</button>
+                <a href="/api/products" class="cancel-btn">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    function toggleAmountInput(checkbox) {
+        // Faqat shu checkboxning o'z qatoridagi amount inputiga ta'sir qiladi
+        const materialItem = checkbox.closest('.material-item'); 
+        const amountInput = materialItem.querySelector('.amount-input');
+        amountInput.disabled = !checkbox.checked; // Agar checkbox belgilansa, input aktiv bo'ladi
+    }
+</script>

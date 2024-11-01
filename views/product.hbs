@@ -1,0 +1,18 @@
+<div class="product-page-container">
+    <h2 class="product-page-title">Product</h2>
+    <div class="product-page-info">
+            <span class="product-page-label">Product Name:</span>
+            <span class="product-page-value" id="product-name">{{data.name}}</span><br>
+            <div class="product-page-material-values">
+                {{#each data.productMaterials}}
+                <div class="material-container">
+                    <span class="material-value" id="product-material-name">{{name}}</span>
+                    <span class="material-value amount" id="product-material-amount">{{amount}} gr</span>
+                </div>
+                {{/each}}
+            </div>
+    </div>
+    <div class="product-page-button-group">
+        <a href="/api/products" class="product-page-cancel-button">Cancel</a>
+    </div>
+</div>
